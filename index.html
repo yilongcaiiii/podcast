@@ -1,1044 +1,1127 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>00后AI机会样本型播客</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* ===== Reset & Base ===== */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; font-size: 16px; }
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      color: #1a1a1a;
-      background: #ffffff;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GenZ Attention｜AI时代个人路径样本型播客</title>
+<style>
+/* ========== Reset & Base ========== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* ===== Typography ===== */
-    .serif { font-family: 'Noto Serif SC', serif; }
-    h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; line-height: 1.3; }
+:root {
+  --glass-bg: rgba(255,255,255,0.72);
+  --glass-bg-secondary: rgba(255,255,255,0.58);
+  --glass-bg-tertiary: rgba(255,255,255,0.45);
+  --glass-border: rgba(255,255,255,0.65);
+  --glass-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  --glass-shadow-lg: 0 16px 48px rgba(0,0,0,0.10);
+  --text-primary: #1a1a1e;
+  --text-secondary: #5a5a5e;
+  --text-tertiary: #8e8e93;
+  --accent: #007AFF;
+  --accent-light: rgba(0,122,255,0.10);
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+}
 
-    /* ===== Container ===== */
-    .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 32px;
-    }
+html { scroll-behavior: smooth; }
 
-    /* ===== Section Spacing ===== */
-    section { padding: 100px 0; }
-    @media (max-width: 768px) { section { padding: 64px 0; } }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'PingFang SC', sans-serif;
+  color: var(--text-primary);
+  background: #f5f5f7;
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
 
-    /* ===== Hero ===== */
-    .hero {
-      min-height: 92vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(180deg, #fafafa 0%, #fff 100%);
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -200px;
-      right: -200px;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(99,102,241,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -150px;
-      left: -100px;
-      width: 400px;
-      height: 400px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(16,185,129,0.05) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-    @media (max-width: 768px) {
-      .hero-content { grid-template-columns: 1fr; gap: 48px; text-align: center; }
-      .hero { min-height: auto; padding: 80px 0 60px; }
-    }
+/* ========== Glass Utility Classes ========== */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 0.5px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--glass-shadow);
+  position: relative;
+  overflow: hidden;
+}
+.glass::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, transparent 100%);
+  pointer-events: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+.glass--secondary {
+  background: var(--glass-bg-secondary);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-radius: var(--radius-sm);
+}
+.glass--card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+  border: 0.5px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.glass--card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 60%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+.glass--card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--glass-shadow-lg);
+}
+.glass--card:hover::before {
+  left: 150%;
+}
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
-      background: #f5f3ff;
-      color: #6366f1;
-      font-size: 13px;
-      font-weight: 500;
-      border-radius: 100px;
-      letter-spacing: 0.02em;
-      margin-bottom: 28px;
-      width: fit-content;
-    }
-    @media (max-width: 768px) { .hero-badge { margin-left: auto; margin-right: auto; } }
+/* ========== Layout ========== */
+.section { padding: 100px 24px; }
+.container { max-width: 1100px; margin: 0 auto; }
+.text-center { text-align: center; }
+.section-label {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 6px 16px;
+  border-radius: 20px;
+  background: var(--accent-light);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-size: clamp(28px, 4.5vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.section-subtitle {
+  font-size: 17px;
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin: 0 auto 48px;
+  line-height: 1.75;
+}
 
-    .hero-badge::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: #6366f1;
-      border-radius: 50%;
-      animation: pulse-dot 2s ease-in-out infinite;
-    }
+/* ========== Scroll Reveal Animation ========== */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
-    @keyframes pulse-dot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(1.4); }
-    }
+/* ========== 1. HERO ========== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 80px 24px;
+}
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero__bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+}
+.hero__bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(245,245,247,0.55) 0%,
+    rgba(245,245,247,0.72) 35%,
+    rgba(245,245,247,0.85) 70%,
+    rgba(245,245,247,0.95) 100%
+  );
+  backdrop-filter: blur(36px) saturate(140%);
+  -webkit-backdrop-filter: blur(36px) saturate(140%);
+}
+.hero__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 800px;
+  padding: 56px 44px;
+  border-radius: var(--radius-xl);
+  background: rgba(255,255,255,0.62);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 0.5px solid rgba(255,255,255,0.7);
+  box-shadow: 0 20px 64px rgba(0,0,0,0.09);
+}
+.hero__brand {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 28px;
+}
+.hero__title {
+  font-size: clamp(34px, 6vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+  margin-bottom: 28px;
+  background: linear-gradient(135deg, #1a1a1e 0%, #3a3a3e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero__title .highlight {
+  color: var(--accent);
+  -webkit-text-fill-color: var(--accent);
+}
+.hero__desc {
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.hero__scroll-hint {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-tertiary);
+  font-size: 12px;
+  animation: float 2s ease-in-out infinite;
+}
+.hero__scroll-hint svg { width: 20px; height: 20px; opacity: 0.5; }
+@keyframes float { 0%,100%{transform:translateX(-50%) translateY(0);} 50%{transform:translateX(-50%) translateY(6px);} }
 
-    .hero h1 {
-      font-size: clamp(32px, 5vw, 52px);
-      font-weight: 700;
-      color: #111827;
-      margin-bottom: 20px;
-      line-height: 1.15;
-    }
+/* ========== 2. WHY NOW ========== */
+.whynow { padding: 120px 24px 100px; background: linear-gradient(180deg, #f5f5f7 0%, #ebebed 100%); }
+.whynow__questions-wrap {
+  position: relative;
+  overflow: hidden;
+  padding: 24px 0;
+  margin-top: 48px;
+  mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+.whynow__track {
+  display: flex;
+  gap: 20px;
+  animation: scroll-left 30s linear infinite;
+  width: max-content;
+}
+.whynow__track:hover { animation-play-state: paused; }
+.whynow__q-card {
+  flex-shrink: 0;
+  padding: 22px 30px;
+  background: rgba(255,255,255,0.68);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 0.5px solid rgba(255,255,255,0.6);
+  border-radius: var(--radius-md);
+  white-space: nowrap;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-primary);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
+.whynow__q-card:hover {
+  background: rgba(255,255,255,0.82);
+  transform: scale(1.04);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+}
+.whynow__q-card::before {
+  content: '?';
+  display: inline-block;
+  margin-right: 10px;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 18px;
+}
+.whynow__body-text {
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.95;
+  margin-top: 48px;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.whynow__highlight {
+  display: block;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 28px;
+  padding-left: 20px;
+  border-left: 3px solid var(--accent);
+  line-height: 1.7;
+}
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
-    .hero-slogan {
-      font-size: 18px;
-      color: #6b7280;
-      max-width: 480px;
-      margin-bottom: 36px;
-      font-weight: 300;
-      line-height: 1.8;
-    }
-    @media (max-width: 768px) { .hero-slogan { margin-left: auto; margin-right: auto; } }
+/* ========== 3. WHAT WE DO ========== */
+.whatwedo { padding: 120px 24px; background: #f5f5f7; }
+.whatwedo__intro {
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.85;
+  max-width: 700px;
+  margin-bottom: 56px;
+}
+.whatwedo__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+.whatwedo__card {
+  padding: 36px 32px;
+}
+.whatwedo__card-icon {
+  width: 48px; height: 48px;
+  border-radius: 14px;
+  background: var(--accent-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+.whatwedo__card-title {
+  font-size: 21px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+.whatwedo__card-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
 
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    @media (max-width: 768px) { .hero-actions { justify-content: center; } }
+/* ========== 4. FOR WHOM ========== */
+.forwhom { padding: 120px 24px; background: linear-gradient(180deg, #ebebed 0%, #f5f5f7 100%); }
+.forwhom__groups { display: flex; flex-direction: column; gap: 24px; max-width: 800px; margin: 0 auto; }
+.forwhom__group {
+  padding: 32px 36px;
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+.forwhom__group-icon {
+  flex-shrink: 0;
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: var(--accent-light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.forwhom__group h4 {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+.forwhom__group p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
 
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 28px;
-      border-radius: 10px;
-      font-size: 15px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      text-decoration: none;
-      border: none;
-    }
-    .btn-primary {
-      background: #111827;
-      color: #fff;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
-    }
-    .btn-primary:hover {
-      background: #1f2937;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1), 0 8px 24px rgba(0,0,0,0.1);
-      transform: translateY(-1px);
-    }
-    .btn-ghost {
-      background: transparent;
-      color: #374151;
-      border: 1.5px solid #e5e7eb;
-    }
-    .btn-ghost:hover {
-      border-color: #9ca3af;
-      background: #f9fafb;
-    }
+/* ========== 5. WHY JOIN ========== */
+.whyjoin { padding: 120px 24px; background: #f5f5f7; }
+.whyjoin__section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0,122,255,0.15);
+}
+.whyjoin__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+.whyjoin__item {
+  padding: 28px 26px;
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border: 0.5px solid rgba(255,255,255,0.55);
+  transition: all 0.3s ease;
+}
+.whyjoin__item:hover {
+  background: rgba(255,255,255,0.78);
+  transform: translateY(-2px);
+}
+.whyjoin__item h4 {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.whyjoin__item p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.whyjoin__note {
+  font-size: 15px;
+  color: var(--text-tertiary);
+  font-style: italic;
+  line-height: 1.8;
+  max-width: 680px;
+  margin: 40px auto 0;
+  text-align: center;
+  padding: 24px 28px;
+  border-radius: var(--radius-md);
+  background: rgba(0,0,0,0.02);
+  border: 0.5px solid rgba(0,0,0,0.05);
+}
 
-    .hero-visual {
-      position: relative;
-    }
-    .hero-image-wrapper {
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow:
-        0 0 0 1px rgba(0,0,0,0.04),
-        0 20px 60px rgba(0,0,0,0.08),
-        0 8px 24px rgba(0,0,0,0.04);
-      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .hero-image-wrapper:hover {
-      transform: translateY(-4px) scale(1.01);
-    }
-    .hero-image-wrapper img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .hero-float-card {
-      position: absolute;
-      bottom: -20px;
-      left: -30px;
-      background: #fff;
-      padding: 18px 22px;
-      border-radius: 14px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.04);
-      z-index: 2;
-      animation: float-card 4s ease-in-out infinite;
-    }
-    @media (max-width: 768px) { .hero-float-card { left: 16px; bottom: -16px; } }
+/* ========== 6. HOST ========== */
+.host { padding: 120px 24px; background: linear-gradient(180deg, #ebebed 0%, #f5f5f7 100%); }
+.host__inner {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.host__photo-wrap {
+  flex-shrink: 0;
+  width: 280px;
+  height: 340px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  border: 0.5px solid rgba(255,255,255,0.6);
+  box-shadow: var(--glass-shadow-lg);
+  position: relative;
+}
+.host__photo-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+.host__photo-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-xl);
+  box-shadow: inset 0 0 0 0.5px rgba(255,255,255,0.3);
+  pointer-events: none;
+}
+.host__info { flex: 1; }
+.host__name {
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+.host__role {
+  font-size: 15px;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+.host__bio p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+.host__bio p:last-child { margin-bottom: 0; }
 
-    @keyframes float-card {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
-    }
-    .float-card-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: #9ca3af;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .float-card-value {
-      font-size: 20px;
-      font-weight: 700;
-      color: #111827;
-    }
-    .float-card-unit {
-      font-size: 13px;
-      color: #6b7280;
-      font-weight: 400;
-      margin-left: 2px;
-    }
+/* ========== 7. FRAMEWORK ========== */
+.framework { padding: 120px 24px; background: #f5f5f7; }
+.framework__block { margin-bottom: 48px; }
+.framework__block:last-child { margin-bottom: 0; }
+.framework__block h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.framework__block h4 .num {
+  width: 30px; height: 30px;
+  border-radius: 8px;
+  background: var(--accent-light);
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.framework__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-left: 8px;
+}
+.framework__list li {
+  font-size: 15px;
+  color: var(--text-secondary);
+  padding: 12px 20px 12px 36px;
+  position: relative;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.45);
+  line-height: 1.7;
+}
+.framework__list li::before {
+  content: '→';
+  position: absolute;
+  left: 14px;
+  color: var(--accent);
+  font-weight: 700;
+}
+.framework__steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 24px;
+}
+.framework__step {
+  padding: 28px 24px;
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  border: 0.5px solid rgba(255,255,255,0.55);
+}
+.framework__step-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.framework__step h5 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+.framework__step p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+.framework__examples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+.framework__example-tag {
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  background: rgba(255,255,255,0.6);
+  border: 0.5px solid rgba(0,0,0,0.06);
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+.framework__example-tag:hover {
+  background: rgba(255,255,255,0.85);
+  color: var(--text-primary);
+}
 
-    /* ===== Section Header ===== */
-    .section-header { text-align: center; margin-bottom: 64px; }
-    .section-tag {
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: #6366f1;
-      margin-bottom: 16px;
-    }
-    .section-title {
-      font-size: clamp(28px, 4vw, 40px);
-      color: #111827;
-      margin-bottom: 16px;
-    }
-    .section-desc {
-      font-size: 17px;
-      color: #6b7280;
-      max-width: 600px;
-      margin: 0 auto;
-      font-weight: 300;
-      line-height: 1.8;
-    }
+/* ========== 8. WELCOME GUESTS ========== */
+.welcome { padding: 120px 24px; background: linear-gradient(180deg, #ebebed 0%, #f5f5f7 100%); }
+.welcome__preamble {
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.85;
+  max-width: 700px;
+  margin: 0 auto 48px;
+  text-align: center;
+}
+.welcome__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 20px;
+}
+.welcome__card {
+  padding: 32px 28px;
+}
+.welcome__card-title {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.welcome__card-title .icon {
+  font-size: 22px;
+}
+.welcome__card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
 
-    /* ===== About / Identity ===== */
-    .about { background: #fafafa; }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      align-items: center;
-    }
-    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+/* ========== 9. CTA ========== */
+.cta {
+  padding: 120px 24px 140px;
+  background: linear-gradient(180deg, #f5f5f7 0%, #e8e8ea 100%);
+  text-align: center;
+}
+.cta__box {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 56px 44px;
+  border-radius: var(--radius-xl);
+  background: rgba(255,255,255,0.68);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 0.5px solid rgba(255,255,255,0.65);
+  box-shadow: 0 20px 64px rgba(0,0,0,0.07);
+}
+.cta__text {
+  font-size: 17px;
+  color: var(--text-secondary);
+  line-height: 1.85;
+  margin-bottom: 36px;
+}
+.cta__contacts {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.cta__contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: var(--radius-md);
+  background: var(--text-primary);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+.cta__contact-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+}
+.cta__contact-btn--secondary {
+  background: rgba(0,0,0,0.06);
+  color: var(--text-primary);
+  border: 0.5px solid rgba(0,0,0,0.1);
+}
+.cta__contact-btn--secondary:hover {
+  background: rgba(0,0,0,0.10);
+}
 
-    .about-text p {
-      font-size: 17px;
-      color: #4b5563;
-      margin-bottom: 20px;
-      line-height: 1.85;
-    }
-    .about-text p:last-child { margin-bottom: 0; }
-    .about-highlight {
-      display: block;
-      padding: 24px 28px;
-      background: #fff;
-      border-radius: 16px;
-      border-left: 3px solid #6366f1;
-      font-size: 15px;
-      color: #374151;
-      line-height: 1.75;
-      font-style: italic;
-      margin-top: 24px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.03);
-    }
+/* ========== Footer ========== */
+.footer {
+  padding: 32px 24px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-tertiary);
+  background: #e8e8ea;
+}
 
-    .about-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-    .about-card {
-      background: #fff;
-      padding: 28px 24px;
-      border-radius: 16px;
-      border: 1px solid #f0ece8;
-      transition: all 0.3s ease;
-    }
-    .about-card:hover {
-      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
-      transform: translateY(-2px);
-    }
-    .about-card-icon {
-      font-size: 28px;
-      margin-bottom: 12px;
-    }
-    .about-card h4 {
-      font-size: 15px;
-      font-weight: 600;
-      color: #111827;
-      margin-bottom: 6px;
-    }
-    .about-card p {
-      font-size: 13px;
-      color: #6b7280;
-      line-height: 1.65;
-    }
-
-    /* ===== Value Proposition ===== */
-    .value-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-    @media (max-width: 900px) { .value-grid { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; } }
-
-    .value-card {
-      background: #fff;
-      padding: 40px 32px;
-      border-radius: 20px;
-      border: 1px solid #f0f0f0;
-      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-    .value-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--card-accent, #6366f1), var(--card-accent-light, #a5b4fc));
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .value-card:hover {
-      box-shadow: 0 12px 48px rgba(0,0,0,0.07);
-      transform: translateY(-4px);
-    }
-    .value-card:hover::before { opacity: 1; }
-
-    .value-num {
-      font-size: 48px;
-      font-weight: 800;
-      color: #f0eeed;
-      line-height: 1;
-      margin-bottom: 12px;
-      font-family: 'Inter', sans-serif;
-      transition: color 0.3s;
-    }
-    .value-card:hover .value-num { color: var(--card-accent-bg, #ede9fe); }
-
-    .value-card h3 {
-      font-size: 20px;
-      color: #111827;
-      margin-bottom: 14px;
-    }
-    .value-card p {
-      font-size: 15px;
-      color: #6b7280;
-      line-height: 1.75;
-    }
-    .value-card:nth-child(1) { --card-accent: #6366f1; --card-accent-light: #a5b4fc; --card-accent-bg: #ede9fe; }
-    .value-card:nth-child(2) { --card-accent: #10b981; --card-accent-light: #6ee7b7; --card-accent-bg: #d1fae5; }
-    .value-card:nth-child(3) { --card-accent: #f59e0b; --card-accent-light: #fcd34d; --card-accent-bg: #fef3c7; }
-
-    /* ===== Target Audience ===== */
-    .audience { background: #fafafa; }
-    .audience-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-    .audience-card {
-      background: #fff;
-      padding: 36px 28px;
-      border-radius: 18px;
-      border: 1px solid #f0f0f0;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-    .audience-card:hover {
-      box-shadow: 0 10px 40px rgba(0,0,0,0.06);
-      transform: translateY(-3px);
-    }
-    .audience-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 18px;
-      font-size: 26px;
-    }
-    .audience-card:nth-child(1) .audience-icon { background: #ede9fe; }
-    .audience-card:nth-child(2) .audience-icon { background: #dbeafe; }
-    .audience-card:nth-child(3) .audience-icon { background: #d1fae5; }
-    .audience-card:nth-child(4) .audience-icon { background: #fef3c7; }
-    .audience-card h4 {
-      font-size: 17px;
-      color: #111827;
-      margin-bottom: 10px;
-    }
-    .audience-card p {
-      font-size: 14px;
-      color: #6b7280;
-      line-height: 1.7;
-    }
-
-    /* ===== Program Format ===== */
-    .format-steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      position: relative;
-    }
-    @media (max-width: 768px) { .format-steps { grid-template-columns: 1fr; } }
-
-    .format-step {
-      background: #fff;
-      padding: 36px 28px;
-      border-radius: 18px;
-      border: 1px solid #f0f0f0;
-      position: relative;
-      transition: all 0.3s ease;
-    }
-    .format-step:hover {
-      box-shadow: 0 10px 40px rgba(0,0,0,0.06);
-    }
-    .step-number {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: #111827;
-      color: #fff;
-      font-size: 14px;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
-    .format-step h4 {
-      font-size: 18px;
-      color: #111827;
-      margin-bottom: 12px;
-    }
-    .format-step ul {
-      list-style: none;
-      padding: 0;
-    }
-    .format-step li {
-      font-size: 14px;
-      color: #6b7280;
-      padding: 6px 0;
-      padding-left: 18px;
-      position: relative;
-      line-height: 1.6;
-    }
-    .format-step li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 15px;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #d1d5db;
-    }
-
-    /* Principles */
-    .principles {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 56px;
-    }
-    .principle-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 22px;
-      background: #fff;
-      border: 1.5px solid #e5e7eb;
-      border-radius: 100px;
-      font-size: 14px;
-      font-weight: 500;
-      color: #374151;
-      transition: all 0.25s;
-    }
-    .principle-tag:hover {
-      border-color: #6366f1;
-      color: #6366f1;
-      box-shadow: 0 4px 16px rgba(99,102,241,0.08);
-    }
-    .principle-tag span {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border-radius: 6px;
-      background: #f3f4f6;
-      font-size: 11px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #6b7280;
-    }
-
-    /* ===== Topics / Season Preview ===== */
-    .topics { background: #fafafa; }
-    .topics-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 16px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .topic-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      background: #fff;
-      padding: 22px 24px;
-      border-radius: 14px;
-      border: 1px solid #f0f0f0;
-      transition: all 0.25s;
-      cursor: default;
-    }
-    .topic-item:hover {
-      box-shadow: 0 6px 24px rgba(0,0,0,0.05);
-      border-color: #e5e7eb;
-      transform: translateX(4px);
-    }
-    .topic-q {
-      flex-shrink: 0;
-      width: 32px;
-      height: 32px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 700;
-    }
-    .topic-text {
-      font-size: 15px;
-      color: #374151;
-      line-height: 1.6;
-      padding-top: 4px;
-    }
-
-    /* Guest Types */
-    .guest-types {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 48px;
-    }
-    .guest-tag {
-      padding: 8px 18px;
-      background: #fff;
-      border: 1px solid #e5e7eb;
-      border-radius: 100px;
-      font-size: 13px;
-      color: #6b7280;
-      transition: all 0.2s;
-    }
-    .guest-tag:hover {
-      background: #111827;
-      color: #fff;
-      border-color: #111827;
-    }
-
-    /* ===== Differentiation ===== */
-    .diff-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    @media (max-width: 768px) { .diff-grid { grid-template-columns: 1fr; } }
-
-    .diff-card {
-      display: flex;
-      gap: 18px;
-      padding: 28px 24px;
-      background: #fafafa;
-      border-radius: 16px;
-      border: 1px solid #f0f0f0;
-      transition: all 0.3s;
-    }
-    .diff-card:hover {
-      background: #fff;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.05);
-    }
-    .diff-icon {
-      flex-shrink: 0;
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: #fff;
-      border: 1.5px solid #e5e7eb;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-    }
-    .diff-content h4 {
-      font-size: 15px;
-      font-weight: 600;
-      color: #111827;
-      margin-bottom: 6px;
-    }
-    .diff-content p {
-      font-size: 14px;
-      color: #6b7280;
-      line-height: 1.65;
-    }
-
-    /* ===== CTA ===== */
-    .cta-section {
-      text-align: center;
-      padding: 100px 0;
-      background: linear-gradient(180deg, #fff 0%, #fafafa 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-section::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 800px;
-      height: 400px;
-      background: radial-gradient(ellipse, rgba(99,102,241,0.05) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .cta-section h2 {
-      font-size: clamp(28px, 4vw, 42px);
-      color: #111827;
-      margin-bottom: 16px;
-      position: relative;
-      z-index: 1;
-    }
-    .cta-section p {
-      font-size: 17px;
-      color: #6b7280;
-      margin-bottom: 36px;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      position: relative;
-      z-index: 1;
-      font-weight: 300;
-    }
-    .cta-actions {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      position: relative;
-      z-index: 1;
-    }
-    .cta-note {
-      margin-top: 24px;
-      font-size: 13px;
-      color: #9ca3af;
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ===== Footer ===== */
-    footer {
-      padding: 32px 0;
-      text-align: center;
-      border-top: 1px solid #f0f0f0;
-      font-size: 13px;
-      color: #9ca3af;
-    }
-
-    /* ===== Animations ===== */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ===== Scrollbar ===== */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: transparent; }
-    ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
-  </style>
+/* ========== Responsive ========== */
+@media (max-width: 768px) {
+  .section { padding: 72px 20px; }
+  .hero__content { padding: 36px 24px; }
+  .host__inner { flex-direction: column; text-align: center; }
+  .host__photo-wrap { width: 200px; height: 240px; margin: 0 auto; }
+  .forwhom__group { flex-direction: column; align-items: center; text-align: center; }
+  .whatwedo__cards { grid-template-columns: 1fr; }
+  .framework__steps { grid-template-columns: 1fr; }
+  .welcome__grid { grid-template-columns: 1fr; }
+  .whyjoin__grid { grid-template-columns: 1fr; }
+  .cta__box { padding: 36px 24px; }
+  .cta__contacts { flex-direction: column; align-items: center; }
+}
+</style>
 </head>
 <body>
 
-  <!-- ==================== HERO ==================== -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-text">
-          <div class="hero-badge">播客项目 · Coming Soon</div>
-          <h1 class="serif">帮助焦虑的00后，<br>看懂 AI 时代的机会与路径</h1>
-          <p class="hero-slogan">一档以真实人物样本为核心，持续拆解年轻人如何在 AI 时代发现机会、做出选择、跑出结果的音视频播客。</p>
-          <div class="hero-actions">
-            <a href="#about" class="btn btn-primary">了解节目 →</a>
-            <a href="#topics" class="btn btn-ghost">查看话题预告</a>
-          </div>
-        </div>
+<!-- ==================== 1. HERO ==================== -->
+<section class="hero" id="hero">
+  <div class="hero__bg">
+    <img src="参考图 1.jpg" alt="播客录制现场" draggable="false">
+    <div class="hero__bg-overlay"></div>
+  </div>
+  <div class="hero__content reveal">
+    <div class="hero__brand">GenZ Attention</div>
+    <h1 class="hero__title">
+      AI时代<br><span class="highlight">个人路径</span>样本型播客
+    </h1>
+    <p class="hero__desc">
+      一档帮助焦虑的 00 后年轻人，看懂 AI 时代机会与个人路径的样本型播客。<br><br>
+      我们不站在高处讲成功，而是从 00 后真实样本出发，持续拆解 AI 时代不同人的起点、判断、准备与行动路径。
+    </p>
+  </div>
+  <div class="hero__scroll-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+    向下滚动
+  </div>
+</section>
 
-        <div class="hero-visual">
-          <div class="hero-image-wrapper">
-            <img src="images/A_minimalist_premium_podcast_s_2026-04-10T09-49-54.png" alt="Podcast Studio" loading="eager">
-          </div>
-          <div class="hero-float-card">
-            <div class="float-card-label">第一季规划</div>
-            <div class="float-card-value">8-10<span class="float-card-unit">期样本访谈</span></div>
-          </div>
-        </div>
+<!-- ==================== 2. WHY NOW ==================== -->
+<section class="whynow" id="whynow">
+  <div class="container text-center">
+    <span class="section-label reveal">Why Now</span>
+    <h2 class="section-title reveal">为什么要做这件事</h2>
+    <p class="section-subtitle reveal">
+      AI 正在快速改写这一代年轻人的职业想象、创业机会和成长路径。很多 00 后都已经知道，AI 是一个绕不过去的大趋势。
+      真正的问题不是"要不要关注 AI"，而是——
+    </p>
+
+    <!-- 滚动问题卡片 -->
+    <div class="whynow__questions-wrap reveal">
+      <div class="whynow__track">
+        <!-- 第一组（复制一份用于无缝循环） -->
+        <div class="whynow__q-card">我到底适不适合进入这个行业？</div>
+        <div class="whynow__q-card">我如果不是技术背景，还有没有机会？</div>
+        <div class="whynow__q-card">我该先去打工积累，还是尽早尝试副业或项目？</div>
+        <div class="whynow__q-card">AI 这么大，我到底能切进哪一层？</div>
+        <div class="whynow__q-card">别人在跑的那些路径，哪些适合我，哪些只是别人的故事？</div>
+        <!-- 第二组（无缝滚动用） -->
+        <div class="whynow__q-card">我到底适不适合进入这个行业？</div>
+        <div class="whynow__q-card">我如果不是技术背景，还有没有机会？</div>
+        <div class="whynow__q-card">我该先去打工积累，还是尽早尝试副业或项目？</div>
+        <div class="whynow__q-card">AI 这么大，我到底能切进哪一层？</div>
+        <div class="whynow__q-card">别人在跑的那些路径，哪些适合我，哪些只是别人的故事？</div>
       </div>
     </div>
-  </section>
 
-  <!-- ==================== ABOUT / WHO WE ARE ==================== -->
-  <section class="about" id="about">
-    <div class="container">
-      <div class="about-grid fade-in">
-        <div class="about-text">
-          <span class="section-tag">About</span>
-          <h2 class="section-title serif" style="text-align:left;margin-bottom:24px;">不是采访别人，<br>是一起找答案</h2>
-          <p>这不是一档站在高处教人「如何成功」的访谈。主持人自己也是一名正在寻找答案的 00 后——和听众一样对 AI 时代的个人发展感到困惑。</p>
-          <p>所以节目的提问视角来自内部：「我和你一样迷茫，但我替你去问那些已经找到方向的人。」这让问题更贴身，也让内容更有代入感。</p>
-          <blockquote class="about-highlight serif">
-            "本质上不是人物采访节目——而是用真实样本回答时代问题，用路径拆解帮助用户完成自我映射。"
-          </blockquote>
-        </div>
+    <div class="whynow__body-text reveal">
+      <strong style="font-size:18px;">GenZ Attention 就是从这个缺口里长出来的。</strong>
+      <br><br>
+      我们相信，真正能帮助 00 后建立行动感的，不只是更大的判断，而是更贴近自己的样本。
+      不是那些已经离普通人很远的成功者，而是那些和我们同代、同样处在变化中、已经开始行动的 00 后样本。
 
-        <div class="about-cards">
-          <div class="about-card">
-            <div class="about-card-icon">🎯</div>
-            <h4>问题驱动</h4>
-            <p>每期围绕一个明确问题展开，嘉宾是「路径样本」，不是传记对象。</p>
-          </div>
-          <div class="about-card">
-            <div class="about-card-icon">🧭</div>
-            <h4>内部视角</h4>
-            <p>"我也在找答案"——从同代人的困惑出发提问，不装专家。</p>
-          </div>
-          <div class="about-card">
-            <div class="about-card-icon">🗺️</div>
-            <h4>机会地图</h4>
-            <p>逐步沉淀「AI 机会地图」框架，成为核心内容资产。</p>
-          </div>
-          <div class="about-card">
-            <div class="about-card-icon">🔗</div>
-            <h4>信任网络</h4>
-            <p>以内容为起点，以信任为中介，以人脉网络为长期价值。</p>
-          </div>
-        </div>
+      <span class="whynow__highlight">
+        因为很多时候，真正让人产生信心的，不是"专家说你可以"，<br>而是你看到一个和你同样年轻、同样不确定、甚至同样普通的人，真的走出了一条路。
+      </span>
+
+      去理解：别人是怎么开始的，为什么敢开始，做了哪些准备，踩过什么坑，又有哪些路径真正值得借鉴。
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 3. WHAT WE DO ==================== -->
+<section class="whatwedo" id="whatwedo">
+  <div class="container text-center">
+    <span class="section-label reveal">What We Do</span>
+    <h2 class="section-title reveal">我们在做什么</h2>
+    <div class="whatwedo__intro reveal">
+      GenZ Attention 是一档围绕 00 后在 AI 时代的机会、路径与选择 展开的样本型播客。
+      这不是一档泛 AI 节目，也不是一档面向大众泛人群的趋势节目。它首先服务的，
+      是那些正在 AI 洪流之下寻找自己位置的 00 后年轻人。
+      <br><br>
+      因此，这档节目的核心，不只是访谈，而是三件事：
+    </div>
+
+    <div class="whatwedo__cards">
+      <div class="glass--card whatwedo__card reveal">
+        <div class="whatwedo__card-icon">🎯</div>
+        <h3 class="whatwedo__card-title">真实样本</h3>
+        <p class="whatwedo__card-desc">
+          我们关注的不是抽象概念，而是 00 后真实的人。他们可能是 00 后 AI 创业者，
+          可能是 00 后 AI 从业者，也可能是围绕 00 后 AI 项目发生连接的投资人和上下游角色。
+          我们真正想看的，是这一代人如何开始行动。
+        </p>
+      </div>
+      <div class="glass--card whatwedo__card reveal">
+        <div class="whatwedo__card-icon">🔍</div>
+        <h3 class="whatwedo__card-title">路径拆解</h3>
+        <p class="whatwedo__card-desc">
+          我们不只问"你现在做成了什么"，更追问"你为什么会开始""你是怎么判断的"
+          "你做了哪些准备""你第一步是怎么迈出去的"。对 00 后来说，结果当然有吸引力，
+          但更有价值的是来时路。
+        </p>
+      </div>
+      <div class="glass--card whatwedo__card reveal">
+        <div class="whatwedo__card-icon">🪞</div>
+        <h3 class="whatwedo__card-title">自我映射</h3>
+        <p class="whatwedo__card-desc">
+          节目最重要的目的，不是让听众羡慕别人，而是帮助他们进一步思考：
+          如果我是一个同样焦虑的 00 后，我能从中借鉴什么？我适合哪条路？
+          我下一步该怎么开始？
+        </p>
       </div>
     </div>
-  </section>
 
-  <!-- ==================== VALUE PROPOSITION ==================== -->
-  <section id="values">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-tag">Core Values</span>
-        <h2 class="section-title serif">为什么听这档节目？</h2>
-        <p class="section-desc">不只是故事，而是三层可感知的价值</p>
-      </div>
-
-      <div class="value-grid">
-        <div class="value-card fade-in">
-          <div class="value-num">01</div>
-          <h3>真实样本</h3>
-          <p>看到与自己条件相近、年纪相仿或路径可参考的人，是如何进入 AI 领域并逐步跑出来的。不是遥远的成功者，而是触手可及的同代人。</p>
-        </div>
-
-        <div class="value-card fade-in">
-          <div class="value-num">02</div>
-          <h3>路径拆解</h3>
-          <p>不只听「发生了什么」，更要拆解「怎么发生的」：如何发现机会 → 做出判断 → 准备能力 → 迈出第一步 → 承受不确定性 → 跑出结果。</p>
-        </div>
-
-        <div class="value-card fade-in">
-          <div class="value-num">03</div>
-          <h3>自我映射</h3>
-          <p>节目最重要的价值：帮用户回答——我跟这个人哪里像？哪些可以借鉴？结合我的情况更适合哪种路径？下一步最现实的行动是什么？</p>
-        </div>
-      </div>
+    <div class="reveal" style="margin-top:40px;padding:28px 32px;border-radius:var(--radius-lg);background:rgba(0,122,255,0.04);border:0.5px solid rgba(0,122,255,0.12);max-width:700px;margin-left:auto;margin-right:auto;">
+      <p style="font-size:15px;color:var(--text-secondary);line-height:1.8;">
+        所以 GenZ Attention 不是一档只讲成功结果的节目。<br>
+        <strong style="color:var(--text-primary);">它更像是一张不断补全的 00 后 AI 路径样本地图，帮助同代人通过看见别人，更清楚地理解自己。</strong>
+      </p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ==================== TARGET AUDIENCE ==================== -->
-  <section class="audience" id="audience">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-tag">For Who</span>
-        <h2 class="section-title serif">这节目适合谁？</h2>
-        <p class="section-desc">如果你在下面看到了自己，那这档节目就是为你做的</p>
+<!-- ==================== 4. FOR WHOM ==================== -->
+<section class="forwhom" id="forwhom">
+  <div class="container text-center">
+    <span class="section-label reveal">For Whom</span>
+    <h2 class="section-title reveal">我们在为谁做</h2>
+    <p class="section-subtitle reveal">
+      GenZ Attention 的核心听众非常明确：00 后年轻人。
+      不是所有年轻人都天然会成为我们的听众，我们真正想服务的，是这样一群人：
+    </p>
+
+    <div class="forwhom__groups reveal">
+      <div class="glass forwhom__group">
+        <div class="forwhom__group-icon">🎧</div>
+        <div>
+          <h4>核心听众：迷茫中的 00 后</h4>
+          <p>
+            他们已经知道 AI 是未来的大趋势；他们也知道自己不能置身事外；
+            但真正面对个人发展和未来选择时，依然处在迷茫之中。
+          </p>
+        </div>
       </div>
-
-      <div class="audience-grid">
-        <div class="audience-card fade-in">
-          <div class="audience-icon">🤔</div>
-          <h4>对 AI 有兴趣但路径不清的人</h4>
-          <p>知道 AI 很重要，但不知道自己该从哪切入、适合什么角色</p>
+      <div class="glass forwhom__group">
+        <div class="forwhom__group-icon">🚀</div>
+        <div>
+          <h4>从业者与创业者</h4>
+          <p>
+            对 00 后 AI 样本感兴趣的从业者与创业者。他们需要的不是泛流量，
+            而是被更精准的人群看见和理解。为自己争取一次表达的机会，
+            也是进入高相关网络的入口，为自己的公司招揽人才。
+          </p>
         </div>
-        <div class="audience-card fade-in">
-          <div class="audience-icon">💼</div>
-          <h4>把上班当跳板的年轻人</h4>
-          <p>对当前工作不满意，想通过观察别人的方式找到自己的可能性</p>
-        </div>
-        <div class="audience-card fade-in">
-          <div class="audience-icon">🚀</div>
-          <h4>年轻 AI 创业者 / 独立开发者</h4>
-          <p>希望建立影响力、获得连接机会、进入更高密度的行业圈层</p>
-        </div>
-        <div class="audience-card fade-in">
-          <div class="audience-icon">🔭</div>
+      </div>
+      <div class="glass forwhom__group">
+        <div class="forwhom__group-icon">💡</div>
+        <div>
           <h4>投资人与行业观察者</h4>
-          <p>希望通过内容窗口低成本理解年轻人的机会感知与新趋势</p>
+          <p>
+            关注 00 后 AI 样本的投资人和行业观察者。如果你在看年轻项目、看新的人、
+            看 AI 时代的代际变化，这档节目也会提供一个很有价值的观察窗口。
+            你看到的不只是项目标签，而是这一代人的机会判断、行动方式和真实潜力。
+          </p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ==================== PROGRAM FORMAT ==================== -->
-  <section id="format">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-tag">Format</span>
-        <h2 class="section-title serif">一节节目怎么做？</h2>
-        <p class="section-desc">问题驱动型音视频访谈，每一集都有清晰的骨架</p>
-      </div>
+<!-- ==================== 5. WHY JOIN ==================== -->
+<section class="whyjoin" id="whyjoin">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-label reveal">Why Join</span>
+      <h2 class="section-title reveal">为什么值得参与</h2>
+      <p class="section-subtitle reveal">
+        对于嘉宾来说，参与 GenZ Attention，不只是录一期播客。<br>
+        它更像是一次把自己的路径讲清楚、并与同代人建立连接的机会。
+      </p>
+    </div>
 
-      <div class="format-steps">
-        <div class="format-step fade-in">
-          <div class="step-number">1</div>
-          <h4>提出问题</h4>
-          <ul>
-            <li>明确本期要解决什么问题</li>
-            <li>先建立听众的收听动机</li>
-            <li>用问题钩子抓住注意力</li>
-          </ul>
+    <div class="reveal">
+      <h3 class="whyjoin__section-title">当下的价值</h3>
+      <div class="whyjoin__grid">
+        <div class="whyjoin__item">
+          <h4>被真正相关的 00 后人群看到</h4>
+          <p>这里不是泛流量曝光，而是更垂直、更精准的触达。你的表达，会被那些真正关心 AI 时代机会、个人路径和未来选择的 00 后听众看到。</p>
         </div>
-
-        <div class="format-step fade-in">
-          <div class="step-number">2</div>
-          <h4>路径拆解</h4>
-          <ul>
-            <li>原始状态：TA 起步时是什么样</li>
-            <li>机会识别 & 关键决策</li>
-            <li>能力准备 & 第一阶段结果</li>
-            <li>犯过的错 & 不可复制部分</li>
-          </ul>
+        <div class="whyjoin__item">
+          <h4>更完整地表达自己的路径</h4>
+          <p>很多人只会看到你的结果，却看不到你是怎么开始的。但对同龄人真正有价值的，往往不是结果，而是过程。</p>
         </div>
-
-        <div class="format-step fade-in">
-          <div class="step-number">3</div>
-          <h4>转译映射 ⭐</h4>
-          <ul>
-            <li>这类路径适合什么样的人</li>
-            <li>有哪些前提条件</li>
-            <li>哪些经验可以借鉴</li>
-            <li>不同背景的人从哪里开始</li>
-          </ul>
+        <div class="whyjoin__item">
+          <h4>形成持续传播的内容资产</h4>
+          <p>一次高质量的录制，会沉淀成一条可以长期传播的内容资产。它帮助别人理解你做了什么，更重要的是理解你为什么这样做。</p>
         </div>
-      </div>
-
-      <div class="principles">
-        <div class="principle-tag"><span>真</span> 真实 · 不做过度包装</div>
-        <div class="principle-tag"><span>具</span> 具体 · 只谈起点、动作、代价</div>
-        <div class="principle-tag"><span>译</span> 转译 · 帮助用户完成自我启发</div>
-        <div class="principle-tag"><span>克</span> 克制 · 不贩卖焦虑也不造神话</div>
       </div>
     </div>
-  </section>
 
-  <!-- ==================== TOPICS PREVIEW ==================== -->
-  <section class="topics" id="topics">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-tag">Season One</span>
-        <h2 class="section-title serif">第一季 · 我们聊什么？</h2>
-        <p class="section-desc">主题：<span class="serif" style="color:#6366f1;font-weight:600;">「AI时代，像我们这样的人，是怎么开始的？」</span></p>
-      </div>
-
-      <div class="topics-list">
-        <div class="topic-item fade-in">
-          <div class="topic-q">Q</div>
-          <div class="topic-text">文科生进入 AI 行业最现实的一条路是什么？</div>
+    <div class="reveal">
+      <h3 class="whyjoin__section-title">长期的合作意义</h3>
+      <div class="whyjoin__grid">
+        <div class="whyjoin__item">
+          <h4>资源嫁接</h4>
+          <p>连接潜在合作伙伴、上下游角色和生态资源，让表达延伸为更自然的后续连接。</p>
         </div>
-        <div class="topic-item fade-in">
-          <div class="topic-q">Q</div>
-          <div class="topic-text">上班族怎么为未来的 AI 创业做准备？</div>
+        <div class="whyjoin__item">
+          <h4>产品冷启支持</h4>
+          <p>对于有潜力的 00 后项目和产品，节目有机会帮助它们在早期获得第一批精准认知与关注。</p>
         </div>
-        <div class="topic-item fade-in">
-          <div class="topic-q">Q</div>
-          <div class="topic-text">没资源没技术的人，能不能先从 AI 服务开始？</div>
+        <div class="whyjoin__item">
+          <h4>人才与伙伴连接</h4>
+          <p>让更多潜在合伙人、加入者、合作方看到你，也看到你的方法和路径。</p>
         </div>
-        <div class="topic-item fade-in">
-          <div class="topic-q">Q</div>
-          <div class="topic-text">一个普通 00 后，什么时候才算准备好创业？</div>
+        <div class="whyjoin__item">
+          <h4>投资人视野触达</h4>
+          <p>让值得被看见的 00 后 AI 样本，更早进入天使投资人和早期投资人的观察范围。</p>
         </div>
-        <div class="topic-item fade-in">
-          <div class="topic-q">Q</div>
-          <div class="topic-text">年轻人做 AI，先学技术还是先找需求？</div>
+        <div class="whyjoin__item">
+          <h4>长期共创机会</h4>
+          <p>围绕内容、项目、活动和资源等维度，产生更深的合作可能。</p>
         </div>
-        <div class="topic-item fade-in">
-          <div class="topic-q">Q</div>
-          <div class="topic-text">为什么有的人适合做产品，有的人更适合做服务？</div>
-        </div>
-        <div class="topic-item fade-in">
-          <div class="topic-q">Q</div>
-          <div class="topic-text">独立开发和组团队创业，适合的是两种什么人？</div>
-        </div>
-        <div class="topic-item fade-in">
-          <div class="topic-q">Q</div>
-          <div class="topic-text">大厂上班到底是在积累，还是在拖延？</div>
-        </div>
-      </div>
-
-      <div class="guest-types">
-        <span class="guest-tag">🎙️ 00后 AI 创业者</span>
-        <span class="guest-tag">🔄 非技术背景切入的样本</span>
-        <span class="guest-tag">💡 AI 产品人 / 独立开发者</span>
-        <span class="guest-tag">📝 内容创业者</span>
-        <span class="guest-tag">🔍 投资人 / 观察者</span>
-        <span class="guest-tag">💥 失败 / 转型样本</span>
       </div>
     </div>
-  </section>
 
-  <!-- ==================== DIFFERENTIATION ==================== -->
-  <section id="diff">
-    <div class="container">
-      <div class="section-header fade-in">
-        <span class="section-tag">Difference</span>
-        <h2 class="section-title serif">跟其他节目有什么不一样？</h2>
+    <div class="whyjoin__note reveal">
+      我们不会夸大这些价值，也不会制造虚假的承诺。<br>
+      但我们相信，真正有价值的事情，往往不是一次性发生的，而是在持续表达和彼此理解中慢慢建立起来的。
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 6. HOST ==================== -->
+<section class="host" id="host">
+  <div class="container text-center">
+    <span class="section-label reveal">Host</span>
+    <h2 class="section-title reveal">主理人是谁</h2>
+  </div>
+  <div class="host__inner reveal">
+    <div class="host__photo-wrap">
+      <img src="参考图 2.jpg" alt="主理人照片" draggable="false">
+    </div>
+    <div class="host__info">
+      <h3 class="host__name">蔡亦龙 Chandler</h3>
+      <div class="host__role">00后 · 腾讯 · GenZ Attention 主理人</div>
+      <div class="host__bio">
+        <p>
+          GenZ Attention 的主理人，也是这个时代里一个真实的 00 后样本。
+          我是一名 00 后，目前在腾讯工作。
+        </p>
+        <p>
+          我不是技术背景，也不是已经在 AI 行业里有明确位置的人。恰恰相反，
+          我做这个项目的起点，来自一种非常真实、也非常典型的 00 后处境：
+        </p>
+        <p>
+          我知道 AI 是大趋势，也知道自己不能错过这个时代。但我同样会迷茫——
+          如果我不是技术出身，如果我现在还在上班，如果我也在把今天当作未来创业的准备期，
+          那我到底应该怎么进入这个世界？
+        </p>
+        <p>
+          我越来越确信一件事：<strong>很多时候，真正有价值的不是听别人讲道理，
+          而是看到同样是 00 后的人，是怎么做判断、怎么做准备、怎么一步步跑出来的。</strong>
+        </p>
+        <p>
+          所以我做 GenZ Attention，不是站在外面评论这个行业，而是把自己放进问题里，
+          替一群同样焦虑的 00 后去问。这个项目既是在为更多同代人寻找样本，
+          也是在为我<strong>自己寻找路径</strong>。
+        </p>
       </div>
+    </div>
+  </div>
+</section>
 
-      <div class="diff-grid">
-        <div class="diff-card fade-in">
-          <div class="diff-icon">🎯</div>
-          <div class="diff-content">
-            <h4>vs 泛 AI 播客</h4>
-            <p>别人讨论技术和行业趋势，我们讨论的是<strong>年轻人如何在 AI 时代找到自己的位置</strong>。</p>
+<!-- ==================== 7. FRAMEWORK ==================== -->
+<section class="framework" id="framework">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-label reveal">Content Framework</span>
+      <h2 class="section-title reveal">播客的内容与节目框架</h2>
+      <p class="section-subtitle reveal">
+        我们的听众是 00 后，我们的样本也优先围绕 00 后。<br>
+        因为这档节目的价值，不是做一个泛泛的 AI 访谈库，而是做一档真正服务 00 后的路径样本节目。
+      </p>
+    </div>
+
+    <!-- 会聊什么样本 -->
+    <div class="framework__block reveal">
+      <h4><span class="num">01</span>我们会聊什么样的样本</h4>
+      <ul class="framework__list">
+        <li><strong>00 后 AI 创业者</strong> — 同代人里最直接的行动样本，从发现机会、判断方向到真正下场</li>
+        <li><strong>00 后 AI 从业者</strong> — 先以打工、实习的方式进入 AI 行业，贴近大多数人的现实入口</li>
+        <li><strong>投过 00 后 AI 项目的投资人</strong> — 帮助听众从另一侧理解什么能力、什么判断真正值得被看见</li>
+        <li><strong>上下游角色</strong> — 独立开发者、产品人、服务创业者、生态连接者等</li>
+      </ul>
+    </div>
+
+    <!-- 拆解什么问题 -->
+    <div class="framework__block reveal">
+      <h4><span class="num">02</span>我们会持续拆解什么问题</h4>
+      <ul class="framework__list">
+        <li>他最初是怎么意识到 AI 这件事和自己有关的</li>
+        <li>为什么会判断这个方向值得做</li>
+        <li>在真正开始之前做了哪些准备 / 中间踩过什么坑</li>
+        <li>第一阶段是怎么起步的 / 他适合这条路的前提是什么</li>
+        <li>哪些经验可以借鉴，哪些不能照搬</li>
+        <li>对同样迷茫的 00 后，有什么真正可落地的启发</li>
+      </ul>
+    </div>
+
+    <!-- 怎么聊 -->
+    <div class="framework__block reveal">
+      <h4><span class="num">03</span>节目怎么聊（三步法）</h4>
+      <div class="framework__steps">
+        <div class="framework__step">
+          <div class="framework__step-num">Step 01</div>
+          <h5>提出问题</h5>
+          <p>先明确这一期真正要讨论的命题，以你的事业为起点开始聊</p>
+          <div class="framework__examples">
+            <span class="framework__example-tag">上班族如何为 AI 创业做准备？</span>
+            <span class="framework__example-tag">非技术背景最现实的入口是什么？</span>
+            <span class="framework__example-tag">先找需求还是先学技术？</span>
           </div>
         </div>
-        <div class="diff-card fade-in">
-          <div class="diff-icon">🧩</div>
-          <div class="diff-content">
-            <h4>vs 创业访谈</h4>
-            <p>别人停留在人物经历或成功案例，我们强调<strong>从故事中提炼路径，帮助用户完成自我映射</strong>。</p>
+        <div class="framework__step">
+          <div class="framework__step-num">Step 02</div>
+          <h5>拆解路径</h5>
+          <p>围绕嘉宾的真实经历，拆解：起点 → 判断 → 准备 → 行动 → 结果 → 风险 → 代价 → 踩坑</p>
+          <div class="framework__examples">
+            <span class="framework__example-tag">更关心真实过程</span>
+            <span class="framework__example-tag">不做结果包装</span>
           </div>
         </div>
-        <div class="diff-card fade-in">
-          <div class="diff-icon">🪞</div>
-          <div class="diff-content">
-            <h4>vs 传统媒体访谈</h4>
-            <p>别人从外部观察者视角提问，我们从<strong>内部视角</strong>出发："我和听众一样也在找答案。"</p>
-          </div>
-        </div>
-        <div class="diff-card fade-in">
-          <div class="diff-icon">⚖️</div>
-          <div class="diff-content">
-            <h4>vs 成功学内容</h4>
-            <p>别人偏情绪化制造幻觉，我们坚持<strong>真实、具体、克制</strong>——不神化样板，承认不可复制性。</p>
+        <div class="framework__step">
+          <div class="framework__step-num">Step 03</div>
+          <h5>转译总结</h5>
+          <p>帮助听众进一步思考：这条路径适合什么样的 00 后？前提条件是什么？下一步可以怎么开始？</p>
+          <div class="framework__examples">
+            <span class="framework__example-tag">节目最重要的部分</span>
+            <span class="framework__example-tag">自我映射</span>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ==================== CTA ==================== -->
-  <section class="cta-section">
-    <div class="container">
-      <h2 class="serif fade-in">第一季即将上线</h2>
-      <p class="fade-in">如果你也对 AI 时代的个人路径感到好奇或焦虑，欢迎关注我们的更新</p>
-      <div class="cta-actions fade-in">
-        <a href="#" class="btn btn-primary" onclick="alert('联系方式敬请期待！');return false;">📮 关注更新通知</a>
-        <a href="#about" class="btn btn-ghost">↑ 再看看上面</a>
+<!-- ==================== 8. WELCOME GUESTS ==================== -->
+<section class="welcome" id="welcome">
+  <div class="container text-center">
+    <span class="section-label reveal">Welcome Guests</span>
+    <h2 class="section-title reveal">我们欢迎什么样的嘉宾</h2>
+    <p class="welcome__preamble reveal">
+      我们欢迎那些对 00 后听众真正有样本价值的人。不一定非要已经"功成名就"，也不一定非要已经有巨大名气。<br>
+      <strong>比起结果有多光鲜，我们更在意：你的路径是否真实、你的判断是否具体、你的经历是否对同代人有启发。</strong>
+    </p>
+
+    <div class="welcome__grid">
+      <div class="glass--card welcome__card reveal">
+        <h4 class="welcome__card-title"><span class="icon">🏗️</span> 00 后 AI 创业者</h4>
+        <p>无论你是在早期探索，还是已经有阶段性成果，只要你真正在行动，你的路径就值得被讲出来。</p>
       </div>
-      <p class="cta-note">节目名称暂未最终确定 · 先把内容和气质做出来再说</p>
+      <div class="glass--card welcome__card reveal">
+        <h4 class="welcome__card-title"><span class="icon">💼</span> 00 后 AI 从业者</h4>
+        <p>如果你正在用自己的方式进入 AI 行业，无论是产品、研发、增长、运营还是内容，你都可能成为非常重要的样本。</p>
+      </div>
+      <div class="glass--card welcome__card reveal">
+        <h4 class="welcome__card-title"><span class="icon">🔓</span> 非技术背景但成功切入 AI 的 00 后</h4>
+        <p>这类样本非常关键。因为他们最能回答很多听众心里的那个问题：如果不是技术出身，我还能怎么进入这个时代？</p>
+      </div>
+      <div class="glass--card welcome__card reveal">
+        <h4 class="welcome__card-title"><span class="icon">📊</span> 与 00 后 AI 项目深度接触的投资人</h4>
+        <p>如果你看过、投过、长期关注过 00 后 AI 项目，你会带来另一种非常重要的视角——不只讲项目，更讲这一代人的潜力和机会感。</p>
+      </div>
+      <div class="glass--card welcome__card reveal">
+        <h4 class="welcome__card-title"><span class="icon">🔗</span> 围绕 00 后 AI 路径形成连接的上下游角色</h4>
+        <p>只要你的经历和 00 后 AI 路径强相关，并且能够帮助听众更具体地理解这个生态，你也会是节目欢迎的对象。</p>
+      </div>
+      <div class="glass--card welcome__card reveal">
+        <h4 class="welcome__card-title"><span class="icon">💬</span> 愿意真实讲过程的人</h4>
+        <p>我们不只关心结果。如果你愿意讲清楚自己是怎么开始的、怎么判断的、怎么准备的、怎么踩坑的，那你的分享就会真正有价值。</p>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- ==================== FOOTER ==================== -->
-  <footer>
-    <div class="container">
-      <p>© 2025 Podcast Project · 以内容为起点，以信任为中介，以网络为长期价值</p>
+<!-- ==================== 9. CTA ==================== -->
+<section class="cta" id="cta">
+  <div class="cta__box reveal">
+    <span class="section-label" style="display:inline-block;margin-bottom:16px;">Contact Us</span>
+    <h2 class="section-title" style="margin-bottom:16px;">联系我们 / 推荐嘉宾</h2>
+    <p class="cta__text">
+      如果你本身就是一个值得被更多 00 后看见的 AI 样本，如果你愿意参与录制，分享你的来时路、判断与路径，<br>
+      如果你想推荐身边真正有代表性的 00 后 AI 创业者、从业者、投资人或上下游角色，欢迎和我们聊聊。
+    </p>
+    <div class="cta__contacts">
+      <a href="weixin://dl/business/?t=chandlercaiii" class="cta__contact-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.295.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 3.882-1.98 5.853-1.838-.576-3.583-4.196-6.348-8.596-6.348zM5.785 5.991c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178A1.17 1.17 0 0 1 4.623 7.17c0-.651.52-1.18 1.162-1.18zm5.813 0c.642 0 1.162.529 1.162 1.18a1.17 1.17 0 0 1-1.162 1.178 1.17 1.17 0 0 1-1.162-1.178c0-.651.52-1.18 1.162-1.18zm5.34 2.867c-1.797-.052-3.746.512-5.28 1.786-1.72 1.428-2.687 3.72-1.78 6.22.942 2.453 3.666 4.229 6.884 4.229.826 0 1.622-.12 2.361-.336a.722.722 0 0 1 .598.082l1.584.926a.272.272 0 0 0 .139.045c.134 0 .246-.108.246-.246 0-.06-.023-.118-.04-.177l-.325-1.233a.49.49 0 0 1 .177-.554C23.143 18.456 24 16.82 24 14.98c0-3.374-3.063-6.122-7.062-6.122zm-2.894 2.974c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982zm4.844 0c.535 0 .969.44.969.982a.976.976 0 0 1-.969.983.976.976 0 0 1-.969-.983c0-.542.434-.982.97-.982z"/></svg>
+        微信 chandlercaiii
+      </a>
+      <a href="mailto:351936197@qq.com" class="cta__contact-btn cta__contact-btn--secondary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        邮箱 351936197@qq.com
+      </a>
     </div>
-  </footer>
+  </div>
+</section>
 
-  <!-- ========== Scroll Animation Script ========== -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -40px 0px'
-      });
+<!-- Footer -->
+<div class="footer">
+  © 2026 GenZ Attention · All Rights Reserved
+</div>
 
-      document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+<!-- ========== Scroll Reveal Script ========== -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const reveals = document.querySelectorAll('.reveal');
+  
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry, index) {
+      if (entry.isIntersecting) {
+        // Stagger animation delay based on sibling order within same parent
+        const siblings = Array.from(entry.target.parentElement.querySelectorAll('.reveal'));
+        const idx = siblings.indexOf(entry.target);
+        entry.target.style.transitionDelay = Math.min(idx * 0.08, 0.4) + 's';
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
     });
+  }, {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  });
 
-    // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
-    });
-  </script>
-
+  reveals.forEach(function(el) { observer.observe(el); });
+  
+  // Trigger hero immediately
+  const heroReveals = document.querySelectorAll('.hero .reveal');
+  heroReveals.forEach(function(el, i) {
+    setTimeout(function() { el.classList.add('visible'); }, i * 250 + 300);
+  });
+});
+</script>
 </body>
 </html>
